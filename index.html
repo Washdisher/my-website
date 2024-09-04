@@ -99,7 +99,7 @@
             background: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
-            transition: transform 0.3s, opacity 0.3s;
+            /* Removed scroll-margin-top since JavaScript will handle the offset */
         }
 
         section h2 {
@@ -282,7 +282,7 @@
         <section id="about">
             <h2>About Me</h2>
             <p>Hi, I’m Trevor—a 26-year-old with a passion for creativity, the outdoors, and financial independence. Born and raised in Hanson, Massachusetts, I’m currently navigating the exciting yet challenging journey of carving out a fulfilling career and lifestyle that aligns with my values.</p>
-	    <a href="https://drive.google.com/file/d/1yWzyq29gt9SQQNen5Xn-LL4t4KxfirLU/view?usp=sharing" class="button" target="_blank">Download Resume</a>
+            <a href="https://drive.google.com/file/d/1yWzyq29gt9SQQNen5Xn-LL4t4KxfirLU/view?usp=sharing" class="button" target="_blank">Download Resume</a>
         </section>
 
         <section id="professional-background">
@@ -340,13 +340,25 @@
             document.body.classList.toggle('scrolled', window.scrollY > 200);
         });
 
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                const headerOffset = document.querySelector('header').offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
         document.querySelector('.back-to-top').addEventListener('click', function (e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('load', function () {
-            document.getElementById('loader').style.display = 'none';
         });
     </script>
 </body>
