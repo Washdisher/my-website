@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trevor Provost - Personal Webpage</title>
+    <meta name="description" content="Trevor Provost - Aspiring Analyst and Music Producer">
+    <meta name="keywords" content="Trevor Provost, Analyst, Music Producer, Accounting, Finance, Portfolio, Resume">
+    <meta name="author" content="Trevor Provost">
+    <link rel="icon" href="https://img.icons8.com/?size=80&id=65474&format=png" type="image/x-icon">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1723764418897-e196cd06ba5c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: padding 0.3s, background-color 0.3s;
+        }
+
+        header.shrink {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        header h1,
+        header p {
+            margin: 0;
+            transition: transform 0.3s, font-size 0.3s;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        header.shrink h1 {
+            font-size: 2em;
+        }
+
+        header p {
+            font-size: 1.4em;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        header.shrink p {
+            font-size: 1em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #333;
+            transition: background-color 0.3s;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        section h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            transition: background-color 0.3s;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: #555;
+        }
+
+        body.scrolled .back-to-top {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                margin-bottom: 20px;
+            }
+
+            nav a {
+                margin-bottom: 10px;
+            }
+
+            header {
+                padding: 60px 10px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+        }
+
+        /* Loader Animation */
+        .loader {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #333;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            z-index: 1000;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input,
+        form textarea,
+        form button {
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader"></div>
+
+    <header>
+        <h1 id="top">Trevor Provost</h1>
+        <p>Aspiring Analyst and Music Producer</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#professional-background">Professional Background</a>
+        <a href="#hobbies-interests">Hobbies & Interests</a>
+        <a href="#personal-philosophy">Personal Philosophy</a>
+        <a href="#looking-ahead">Looking Ahead</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hi, I’m Trevor—a 25-year-old with a passion for creativity, the outdoors, and financial independence. Born and raised in Hanson, Massachusetts, I’m currently navigating the exciting yet challenging journey of carving out a fulfilling career and lifestyle that aligns with my values.</p>
+        </section>
+
+        <section id="professional-background">
+            <h2>Professional Background</h2>
+            <p>I recently graduated with a degree in Accounting and Finance, and I’m actively seeking opportunities in the analytics field. My education has equipped me with a strong foundation in financial analysis, data-driven decision-making, and problem-solving. I’m particularly drawn to roles where I can leverage my skills to provide actionable insights and drive business growth.</p>
+            <p>While job hunting, I’ve been exploring opportunities in both <a href="https://www.boston.gov/" target="_blank">Boston</a> and <a href="https://www.visitseattle.org/" target="_blank">Seattle</a>, two cities I’m passionate about for their vibrant cultures and economic opportunities. I’m currently awaiting responses from various applications, including a promising position with <a href="https://www.wbmason.com/" target="_blank">W.B. Mason</a> as an Assistant Buyer.</p>
+        </section>
+
+        <section id="hobbies-interests">
+            <h2>Hobbies and Interests</h2>
+            <p>Outside of my professional pursuits, I’m an avid music producer. I work primarily in electronic, house, techno, DnB, rap, and pop genres, using <a href="https://www.ableton.com/" target="_blank">Ableton</a> as my DAW of choice. My ultimate goal in music production is to release a body of work that truly reflects my creative vision. Though I’ve been in a bit of a creative rut recently, I’m slowly reigniting that spark and looking forward to getting back into the studio.</p>
+            <p>When I’m not producing music, you’ll likely find me outdoors. I’m passionate about mountain and gravel biking, hiking, and fly fishing. I’m a minimalist at heart, so I prefer investing in high-quality gear that lasts. Whether it’s the durability of a well-worn pair of hiking boots or the precision of a fly rod, I believe in owning fewer, better things that can keep up with my adventures.</p>
+        </section>
+
+        <section id="personal-philosophy">
+            <h2>Personal Philosophy</h2>
+            <p>I’m a firm believer in the importance of balance. Whether it’s managing my finances, maintaining my fitness routine, or pursuing my creative passions, I strive to lead a life that’s both disciplined and fulfilling. I wake up early, usually around 5 AM, to make the most of my day, and I aim to wind down by 10 PM. Exercise is a daily priority for me, whether it’s hitting the trails on my bike or lifting weights to stay strong.</p>
+            <p>I’m also on a journey towards self-sufficiency. While I dream of running my own company someday, I’m equally open to other paths that allow me to achieve financial independence and personal fulfillment. Though I’ve faced some setbacks—like a recent breakup and the ongoing challenges of job hunting—I’m committed to staying focused on my long-term goals: to be fit, successful, and, most importantly, happy.</p>
+        </section>
+
+        <section id="looking-ahead">
+            <h2>Looking Ahead</h2>
+            <p>As I continue to build my career and explore my passions, I’m excited about what the future holds. Whether I’m producing my next track, landing that dream job, or simply enjoying a peaceful hike, I’m driven by the desire to live a life that’s both meaningful and aligned with my values.</p>
+            <p>Feel free to connect with me on social media or reach out via the contact information provided below. I’m always open to new opportunities, collaborations, and conversations.</p>
+            <a href="#contact" class="button">Let's Connect</a>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>If you'd like to get in touch, feel free to reach out via email:</p>
+            <p><strong>Email:</strong> <a href="mailto:trevorprovost@gmail.com">trevorprovost@gmail.com</a></p>
+            <form action="https://formspree.io/f/xdknjzle" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="_replyto" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank">LinkedIn</a> |
+            <a href="https://www.kaggle.com/trevorprovost" target="_blank">Kaggle</a>
+        </div>
+        <p>&copy; 2024 Trevor Provost | Designed with a love for nature</p>
+    </footer>
+
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            header.classList.toggle('shrink', window.scrollY > 100);
+            document.body.classList.toggle('scrolled', window.scrollY > 200);
+        });
+
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('load', function () {
+            document.getElementById('loader').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
