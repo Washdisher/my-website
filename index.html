@@ -2,18 +2,29 @@
 <html lang="en">
 
 <head>
+    <!-- Meta Tags for Character Encoding and Viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trevor Provost - Personal Webpage</title>
-    <meta name="description" content="Trevor Provost - Aspiring Analyst and Music Producer">
-    <meta name="keywords" content="Trevor Provost, Analyst, Music Producer, Accounting, Finance, Portfolio, Resume">
-    <meta name="author" content="Trevor Provost">
+    <meta name="description" content="Aspiring Analyst and Music Producer">
+
+    <!-- Open Graph Meta Tags for SEO and Social Sharing -->
+    <meta property="og:title" content="Trevor Provost - Personal Webpage">
+    <meta property="og:description" content="Aspiring Analyst and Music Producer">
+    <meta property="og:image" content="URL_to_your_image">
+    <meta property="og:url" content="https://yourwebsite.com">
+
+    <!-- Favicon -->
     <link rel="icon" href="https://img.icons8.com/?size=80&id=65474&format=png" type="image/x-icon">
+
+    <!-- Inline CSS Styles -->
     <style>
+        /* Global Styles */
         html {
             scroll-behavior: smooth;
         }
 
+        /* Body Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -24,6 +35,7 @@
             transition: background-color 0.3s ease;
         }
 
+        /* Header Styles */
         header {
             background: url('https://images.unsplash.com/photo-1723764418897-e196cd06ba5c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
             color: white;
@@ -66,6 +78,7 @@
             font-size: 1em;
         }
 
+        /* Navigation Styles */
         nav {
             display: flex;
             justify-content: center;
@@ -83,15 +96,18 @@
             transition: color 0.3s, transform 0.3s;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus {
             color: #ccc;
             transform: translateY(-2px);
         }
 
+        /* Main Content Styles */
         main {
             padding: 0 20px;
         }
 
+        /* Section Styles */
         section {
             padding: 40px 20px;
             max-width: 800px;
@@ -114,7 +130,8 @@
             margin-bottom: 15px;
         }
 
-        .button {
+        /* Button Styles */
+        .button--primary {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
@@ -126,11 +143,13 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .button:hover {
+        .button--primary:hover,
+        .button--primary:focus {
             background-color: #555;
             transform: translateY(-2px);
         }
 
+        /* Footer Styles */
         footer {
             background: #333;
             color: white;
@@ -152,11 +171,13 @@
             transition: color 0.3s, transform 0.3s;
         }
 
-        .social-links a:hover {
+        .social-links a:hover,
+        .social-links a:focus {
             color: #ccc;
             transform: translateY(-2px);
         }
 
+        /* Back-to-Top Button Styles */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -174,12 +195,22 @@
             transition: opacity 0.3s;
         }
 
-        .back-to-top:hover {
+        .back-to-top:hover,
+        .back-to-top:focus {
             background-color: #555;
         }
 
         body.scrolled .back-to-top {
             opacity: 1;
+        }
+
+        /* Focus Styles for Accessibility */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #555;
+            outline-offset: 2px;
         }
 
         /* Responsive Design */
@@ -197,44 +228,25 @@
                 padding: 60px 10px;
             }
 
-            .button {
+            .button--primary {
                 width: 100%;
                 text-align: center;
                 padding: 15px 0;
             }
         }
 
-        /* Loader Animation */
-        .loader {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #333;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
-            z-index: 1000;
-            display: none;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
+        /* Form Styles */
         form {
             max-width: 600px;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
+        }
+
+        form label {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: #333;
         }
 
         form input,
@@ -254,22 +266,21 @@
             transition: background-color 0.3s;
         }
 
-        form button:hover {
+        form button:hover,
+        form button:focus {
             background-color: #555;
         }
     </style>
 </head>
 
 <body>
-    <!-- Loader -->
-    <div id="loader" class="loader"></div>
-
     <header>
         <h1 id="top">Trevor Provost</h1>
         <p>Aspiring Analyst and Music Producer</p>
     </header>
 
-    <nav>
+    <!-- Navigation with ARIA Role -->
+    <nav role="navigation">
         <a href="#about">About</a>
         <a href="#professional-background">Professional Background</a>
         <a href="#hobbies-interests">Hobbies & Interests</a>
@@ -278,87 +289,107 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <main>
+    <!-- Main Content with ARIA Role -->
+    <main role="main">
+        <!-- About Section -->
         <section id="about">
             <h2>About Me</h2>
             <p>Hi, I’m Trevor—a 26-year-old with a passion for creativity, the outdoors, and financial independence. Born and raised in Hanson, Massachusetts, I’m currently navigating the exciting yet challenging journey of carving out a fulfilling career and lifestyle that aligns with my values.</p>
-            <a href="https://drive.google.com/file/d/1yWzyq29gt9SQQNen5Xn-LL4t4KxfirLU/view?usp=sharing" class="button" target="_blank">Download Resume</a>
+            <a href="https://drive.google.com/file/d/1yWzyq29gt9SQQNen5Xn-LL4t4KxfirLU/view?usp=sharing" class="button--primary" target="_blank" rel="noopener">Download Resume</a>
         </section>
 
+        <!-- Professional Background Section -->
         <section id="professional-background">
             <h2>Professional Background</h2>
             <p>I recently graduated with a degree in Accounting and Finance, and I’m actively seeking opportunities in the analytics field. My education has equipped me with a strong foundation in financial analysis, data-driven decision-making, and problem-solving. I’m particularly drawn to roles where I can leverage my skills to provide actionable insights and drive business growth.</p>
-            <p>While job hunting, I’ve been exploring opportunities in both <a href="https://www.boston.gov/" target="_blank">Boston</a> and <a href="https://www.visitseattle.org/" target="_blank">Seattle</a>, two cities I’m passionate about for their vibrant cultures and economic opportunities.</p>
+            <p>While job hunting, I’ve been exploring opportunities in both <a href="https://www.boston.gov/" target="_blank" rel="noopener">Boston</a> and <a href="https://www.visitseattle.org/" target="_blank" rel="noopener">Seattle</a>, two cities I’m passionate about for their vibrant cultures and economic opportunities.</p>
         </section>
 
+        <!-- Hobbies and Interests Section -->
         <section id="hobbies-interests">
             <h2>Hobbies and Interests</h2>
-            <p>Outside of my professional pursuits, I’m an avid music producer. I work primarily in electronic, house, techno, DnB, rap, and pop genres, using <a href="https://www.ableton.com/" target="_blank">Ableton</a> as my DAW of choice. My ultimate goal in music production is to release a body of work that truly reflects my creative vision. Though I’ve been in a bit of a creative rut recently, I’m slowly reigniting that spark and looking forward to getting back into the studio.</p>
+            <p>Outside of my professional pursuits, I’m an avid music producer. I work primarily in electronic, house, techno, DnB, rap, and pop genres, using <a href="https://www.ableton.com/" target="_blank" rel="noopener">Ableton</a> as my DAW of choice. My ultimate goal in music production is to release a body of work that truly reflects my creative vision. Though I’ve been in a bit of a creative rut recently, I’m slowly reigniting that spark and looking forward to getting back into the studio.</p>
             <p>When I’m not producing music, you’ll likely find me outdoors. I’m passionate about mountain and gravel biking, hiking, and fly fishing. I’m a minimalist at heart, so I prefer investing in high-quality gear that lasts. Whether it’s the durability of a well-worn pair of hiking boots or the precision of a fly rod, I believe in owning fewer, better things that can keep up with my adventures.</p>
         </section>
 
+        <!-- Personal Philosophy Section -->
         <section id="personal-philosophy">
             <h2>Personal Philosophy</h2>
             <p>I’m a firm believer in the importance of balance. Whether it’s managing my finances, maintaining my fitness routine, or pursuing my creative passions, I strive to lead a life that’s both disciplined and fulfilling. I wake up early, usually around 5 AM, to make the most of my day, and I aim to wind down by 10 PM. Exercise is a daily priority for me, whether it’s hitting the trails on my bike or lifting weights to stay strong.</p>
             <p>I’m also on a journey towards self-sufficiency. While I dream of running my own company someday, I’m equally open to other paths that allow me to achieve financial independence and personal fulfillment. Though I’ve faced some setbacks—like a recent breakup and the ongoing challenges of job hunting—I’m committed to staying focused on my long-term goals: to be fit, successful, and, most importantly, happy.</p>
         </section>
 
+        <!-- Looking Ahead Section -->
         <section id="looking-ahead">
             <h2>Looking Ahead</h2>
             <p>As I continue to build my career and explore my passions, I’m excited about what the future holds. Whether I’m producing my next track, landing that dream job, or simply enjoying a peaceful hike, I’m driven by the desire to live a life that’s both meaningful and aligned with my values.</p>
             <p>Feel free to connect with me on social media or reach out via the contact information provided below. I’m always open to new opportunities, collaborations, and conversations.</p>
-            <a href="#contact" class="button">Let's Connect</a>
+            <a href="#contact" class="button--primary">Let's Connect</a>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact">
             <h2>Contact</h2>
-            <p>If you'd like to get in touch, feel free to reach out via email:</p>
-            <p><strong>Email:</strong> <a href="mailto:trevorprovost@gmail.com">trevorprovost@gmail.com</a></p>
+            <p>If you'd like to get in touch, please use the contact form below.</p>
             <form action="https://formspree.io/f/xdknjzle" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="_replyto" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
+                <label for="name">Your Name</label>
+                <input type="text" name="name" id="name" placeholder="Your Name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" name="_replyto" id="email" placeholder="Your Email" required>
+
+                <label for="message">Your Message</label>
+                <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+
                 <button type="submit">Send</button>
             </form>
         </section>
     </main>
 
-    <footer>
+    <!-- Footer with ARIA Role and Dynamic Year -->
+    <footer role="contentinfo">
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank">LinkedIn</a> |
-            <a href="https://www.kaggle.com/trevorprovost" target="_blank">Kaggle</a>
+            <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank" rel="noopener">LinkedIn</a> |
+            <a href="https://www.kaggle.com/trevorprovost" target="_blank" rel="noopener">Kaggle</a>
         </div>
-        <p>&copy; 2024 Trevor Provost | Designed with a love for nature</p>
+        <p>&copy; <span id="current-year"></span> Trevor Provost | Designed with a love for nature</p>
     </footer>
 
-    <a href="#" class="back-to-top" title="Back to Top">↑</a>
+    <!-- Back-to-Top Button with ARIA Label -->
+    <a href="#" class="back-to-top" title="Back to Top" aria-label="Back to Top">↑</a>
 
+    <!-- Inline JavaScript -->
     <script>
+        // Shrink Header on Scroll and Show Back-to-Top Button
         window.addEventListener('scroll', function () {
             const header = document.querySelector('header');
             header.classList.toggle('shrink', window.scrollY > 100);
             document.body.classList.toggle('scrolled', window.scrollY > 200);
         });
 
+        // Dynamically Update Footer Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Adjust Scroll Position When Navigation Links are Clicked
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
-                const headerOffset = document.querySelector('header').offsetHeight;
+
+                // Get the current height of the header
+                const header = document.querySelector('header');
+                const headerHeight = header.offsetHeight;
+
+                // Calculate the position to scroll to
                 const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - headerOffset;
+                const offsetPosition = elementPosition - headerHeight;
 
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
             });
-        });
-
-        document.querySelector('.back-to-top').addEventListener('click', function (e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
