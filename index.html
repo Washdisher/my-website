@@ -1,113 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Meta Tags for Character Encoding and Viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trevor Provost - Personal Webpage</title>
-    <meta name="description" content="Aspiring Analyst and Music Producer">
-
-    <!-- Open Graph Meta Tags for SEO and Social Sharing -->
-    <meta property="og:title" content="Trevor Provost - Personal Webpage">
-    <meta property="og:description" content="Aspiring Analyst and Music Producer">
-    <meta property="og:image" content="URL_to_your_image">
-    <meta property="og:url" content="https://yourwebsite.com">
-
-    <!-- Favicon -->
+    <title>Trevor Provost</title>
+    <meta name="description" content="AML Analyst & Financial Crimes Compliance | Music Producer | Hanson, MA">
+    <meta property="og:title" content="Trevor Provost">
+    <meta property="og:description" content="AML Analyst at Protiviti specializing in financial crimes compliance and transaction monitoring.">
+    <meta property="og:url" content="https://washdisher.github.io/my-website/">
     <link rel="icon" href="https://img.icons8.com/?size=80&id=65474&format=png" type="image/x-icon">
-
-    <!-- Link to External CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header>
-        <h1 id="top">Trevor Provost</h1>
-        <p>Aspiring Analyst and Music Producer</p>
-    </header>
 
-    <!-- Navigation with ARIA Role -->
-    <nav role="navigation">
-        <a href="#about">About</a>
-        <a href="#professional-background">Professional Background</a>
-        <a href="#hobbies-interests">Hobbies & Interests</a>
-        <a href="#personal-philosophy">Personal Philosophy</a>
-        <a href="#looking-ahead">Looking Ahead</a>
-        <a href="#contact">Contact</a>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#top" class="nav-logo">TP</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#interests">Interests</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+        </div>
     </nav>
 
-    <!-- Main Content with ARIA Role -->
-    <main role="main">
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hi, I’m Trevor—a 26-year-old with a passion for creativity, the outdoors, and financial independence. Born and raised in Hanson, Massachusetts, I’m currently navigating the exciting yet challenging journey of carving out a fulfilling career and lifestyle that aligns with my values.</p>
-            <a href="https://drive.google.com/file/d/1yWzyq29gt9SQQNen5Xn-LL4t4KxfirLU/view?usp=sharing" class="button--primary" target="_blank" rel="noopener">Download Resume</a>
+    <header id="top">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">AML Analyst &middot; Financial Crimes Compliance</p>
+            <h1>Trevor Provost</h1>
+            <p class="hero-sub">Investigator by day. Music producer and trail enthusiast by nature.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn--primary">Get in Touch</a>
+                <a href="#about" class="btn btn--outline">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-label">About</div>
+                <h2 class="section-title">Who I Am</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I'm Trevor — an AML Analyst at Protiviti in Boston, where I conduct financial crimes investigations, draft Suspicious Transaction Reports to FINTRAC, and build audit-ready case files for Canadian retail banking clients. I graduated with a B.S. in Accounting and Finance from Southern New Hampshire University in 2024 and hold a Google Data Analytics Certificate.</p>
+                        <p>Outside of compliance work, I'm a music producer working in electronic, house, techno, DnB, and rap — primarily in Ableton. When I'm not in the studio, you'll find me mountain biking, hiking, or fly fishing somewhere quiet.</p>
+                        <p>I'm based in Hanson, MA and approach everything — work, fitness, creativity — with the same commitment to discipline and detail.</p>
+                        <a href="https://www.linkedin.com/in/trevorprovost/" class="btn btn--primary" target="_blank" rel="noopener">Connect on LinkedIn</a>
+                    </div>
+                    <div class="about-facts">
+                        <div class="fact-card">
+                            <span class="fact-num">10–15</span>
+                            <span class="fact-label">AML investigations per week</span>
+                        </div>
+                        <div class="fact-card">
+                            <span class="fact-num">2024</span>
+                            <span class="fact-label">B.S. Accounting &amp; Finance</span>
+                        </div>
+                        <div class="fact-card">
+                            <span class="fact-num">FINTRAC</span>
+                            <span class="fact-label">STR filing experience</span>
+                        </div>
+                        <div class="fact-card">
+                            <span class="fact-num">Pod&nbsp;Deputy</span>
+                            <span class="fact-label">Selected for QA leadership role</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Professional Background Section -->
-        <section id="professional-background">
-            <h2>Professional Background</h2>
-            <p>I recently graduated with a degree in Accounting and Finance, and I’m actively seeking opportunities in the analytics field. My education has equipped me with a strong foundation in financial analysis, data-driven decision-making, and problem-solving. I’m particularly drawn to roles where I can leverage my skills to provide actionable insights and drive business growth.</p>
-            <p>While job hunting, I’ve been exploring opportunities in both <a href="https://www.boston.gov/" target="_blank" rel="noopener">Boston</a> and <a href="https://www.visitseattle.org/" target="_blank" rel="noopener">Seattle</a>, two cities I’m passionate about for their vibrant cultures and economic opportunities.</p>
+        <section id="experience" class="section section--alt">
+            <div class="container">
+                <div class="section-label">Experience</div>
+                <h2 class="section-title">Professional Background</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">June 2025 &ndash; Present</div>
+                            <h3>Financial Crimes Compliance Analyst</h3>
+                            <div class="timeline-company">Protiviti &middot; Boston, MA</div>
+                            <ul>
+                                <li>Conduct 10–15 financial crimes investigations per week — triaging transaction-monitoring alerts and completing risk-based case dispositions within SLA.</li>
+                                <li>Identify AML typologies including structuring/smurfing, mule activity, rapid fund movement, e-Transfer abuse, and cash-intensive risk.</li>
+                                <li>Draft and file Suspicious Transaction Reports (STRs) to FINTRAC with concise narratives linking indicators → evidence → conclusion.</li>
+                                <li>Build audit-ready case files with chronologies, supporting documentation, and clear workpapers.</li>
+                                <li>Selected as Pod Deputy — supporting analysts, liaising with QA/SLR, and creating job aids and micro-trainings to improve case quality.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">Jan 2025 &ndash; May 2025</div>
+                            <h3>Host / Takeout / Prep Cook</h3>
+                            <div class="timeline-company">Stoked Pizza Co. &middot; Cohasset, MA</div>
+                            <ul>
+                                <li>Coordinated 75+ takeout orders per shift while maintaining 95%+ customer satisfaction during peak volume.</li>
+                                <li>Executed daily compliance checklists with 100% inspection compliance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">Jan 2020 &ndash; May 2024</div>
+                            <h3>FOH Specialist</h3>
+                            <div class="timeline-company">Not Your Average Joe's &middot; Norwell, MA</div>
+                            <ul>
+                                <li>Managed high-volume operations handling $3,000+/day in transactions.</li>
+                                <li>Trained 5+ new hires with emphasis on accuracy, controls, and throughput under pressure.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="education-block">
+                    <h3 class="subsection-title">Education</h3>
+                    <div class="edu-grid">
+                        <div class="edu-card">
+                            <div class="edu-degree">B.S. Accounting &amp; Finance</div>
+                            <div class="edu-school">Southern New Hampshire University</div>
+                            <div class="edu-year">2024</div>
+                        </div>
+                        <div class="edu-card">
+                            <div class="edu-degree">Google Data Analytics Certificate</div>
+                            <div class="edu-school">Coursera</div>
+                            <div class="edu-year">2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Hobbies and Interests Section -->
-        <section id="hobbies-interests">
-            <h2>Hobbies and Interests</h2>
-            <p>Outside of my professional pursuits, I’m an avid music producer. I work primarily in electronic, house, techno, DnB, rap, and pop genres, using <a href="https://www.ableton.com/" target="_blank" rel="noopener">Ableton</a> as my DAW of choice. My ultimate goal in music production is to release a body of work that truly reflects my creative vision. Though I’ve been in a bit of a creative rut recently, I’m slowly reigniting that spark and looking forward to getting back into the studio.</p>
-            <p>When I’m not producing music, you’ll likely find me outdoors. I’m passionate about mountain and gravel biking, hiking, and fly fishing. I’m a minimalist at heart, so I prefer investing in high-quality gear that lasts. Whether it’s the durability of a well-worn pair of hiking boots or the precision of a fly rod, I believe in owning fewer, better things that can keep up with my adventures.</p>
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-label">Skills</div>
+                <h2 class="section-title">What I Bring</h2>
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h3>Financial Crimes</h3>
+                        <div class="skill-tags">
+                            <span>AML Investigations</span>
+                            <span>Transaction Monitoring</span>
+                            <span>STR Drafting</span>
+                            <span>FINTRAC Compliance</span>
+                            <span>Typology Identification</span>
+                            <span>Risk-Based Analysis</span>
+                            <span>Case Documentation</span>
+                            <span>Audit-Ready Workpapers</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Technical</h3>
+                        <div class="skill-tags">
+                            <span>Microsoft Excel</span>
+                            <span>SQL</span>
+                            <span>Python</span>
+                            <span>R</span>
+                            <span>Tableau</span>
+                            <span>Google Data Studio</span>
+                            <span>Microsoft Office Suite</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-tags">
+                            <span>Narrative Writing</span>
+                            <span>QA Collaboration</span>
+                            <span>Analytical Thinking</span>
+                            <span>Attention to Detail</span>
+                            <span>Team Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Personal Philosophy Section -->
-        <section id="personal-philosophy">
-            <h2>Personal Philosophy</h2>
-            <p>I’m a firm believer in the importance of balance. Whether it’s managing my finances, maintaining my fitness routine, or pursuing my creative passions, I strive to lead a disciplined and fulfilling life. I wake up early, usually around 5 AM, to make the most of my day, and I aim to wind down by 10 PM. Exercise is a daily priority for me, whether it’s hitting the trails on my bike or lifting weights to stay strong.</p>
-            <p>I’m also on a journey towards self-sufficiency. While I dream of running my own company someday, I’m equally open to other paths that allow me to achieve financial independence and personal fulfillment. Though I’ve faced some setbacks, I’m committed to staying focused on my long-term goals: to be fit, successful, and, most importantly, happy.</p>
+        <section id="interests" class="section section--alt">
+            <div class="container">
+                <div class="section-label">Beyond Work</div>
+                <h2 class="section-title">Interests &amp; Passions</h2>
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <div class="interest-icon">♪</div>
+                        <h3>Music Production</h3>
+                        <p>I produce electronic, house, techno, DnB, and rap in Ableton. Working toward a body of work that truly reflects my creative vision.</p>
+                    </div>
+                    <div class="interest-card">
+                        <div class="interest-icon">⛰</div>
+                        <h3>Outdoor Adventures</h3>
+                        <p>Mountain biking, gravel riding, hiking, and fly fishing. A minimalist at heart — fewer, better things that can keep up with the trail.</p>
+                    </div>
+                    <div class="interest-card">
+                        <div class="interest-icon">◎</div>
+                        <h3>Discipline &amp; Balance</h3>
+                        <p>Up at 5 AM, daily exercise, focused on long-term goals: fitness, financial independence, and a life aligned with my values.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Looking Ahead Section -->
-        <section id="looking-ahead">
-            <h2>Looking Ahead</h2>
-            <p>As I continue to build my career and explore my passions, I’m excited about what the future holds. Whether I’m producing my next track, landing that dream job, or simply enjoying a peaceful hike, I’m driven by the desire to live a life that’s both meaningful and aligned with my values.</p>
-            <p>Feel free to connect with me on social media or reach out via the contact information provided below. I’m always open to new opportunities, collaborations, and conversations.</p>
-            <a href="#contact" class="button--primary">Let's Connect</a>
+        <section id="contact" class="section">
+            <div class="container container--narrow">
+                <div class="section-label">Contact</div>
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-intro">Open to new opportunities, collaborations, and conversations.</p>
+                <form action="https://formspree.io/f/xdknjzle" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="_replyto" id="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" placeholder="What's on your mind?" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                </form>
+            </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>If you'd like to get in touch, please use the contact form below.</p>
-            <form action="https://formspree.io/f/xdknjzle" method="POST">
-                <label for="name">Your Name</label>
-                <input type="text" name="name" id="name" placeholder="Your Name" required>
-
-                <label for="email">Your Email</label>
-                <input type="email" name="_replyto" id="email" placeholder="Your Email" required>
-
-                <label for="message">Your Message</label>
-                <textarea name="message" id="message" placeholder="Your Message" required></textarea>
-
-                <button type="submit">Send</button>
-            </form>
-        </section>
     </main>
 
-    <!-- Footer with ARIA Role and Dynamic Year -->
-    <footer role="contentinfo">
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank" rel="noopener">LinkedIn</a> |
-            <a href="https://www.kaggle.com/trevorprovost" target="_blank" rel="noopener">Kaggle</a>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.kaggle.com/trevorprovost" target="_blank" rel="noopener">Kaggle</a>
+            </div>
+            <p class="footer-copy">&copy; <span id="current-year"></span> Trevor Provost</p>
         </div>
-        <p>&copy; <span id="current-year"></span> Trevor Provost | Designed with a love for nature</p>
     </footer>
 
-    <!-- Back-to-Top Button with ARIA Label -->
-    <a href="#" class="back-to-top" title="Back to Top" aria-label="Back to Top">↑</a>
+    <a href="#top" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
-    <!-- Link to External JavaScript -->
     <script src="scripts.js"></script>
 </body>
-
 </html>
