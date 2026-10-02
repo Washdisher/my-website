@@ -567,6 +567,11 @@ header {
     background: var(--sage);
 }
 
+.timeline-body ul li strong {
+    font-weight: 600;
+    color: var(--forest-dark);
+}
+
 /* === Education === */
 .subsection-title {
     font-family: 'Cormorant Garamond', serif;
