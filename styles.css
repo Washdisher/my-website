@@ -126,6 +126,7 @@ a { color: inherit; }
     font-size: 0.83em;
     font-weight: 500;
     letter-spacing: 0.04em;
+    white-space: nowrap;
     transition: color var(--transition);
     position: relative;
 }
@@ -618,6 +619,109 @@ header {
     letter-spacing: 0.06em;
 }
 
+/* === Projects === */
+/* Screenshot spans the card; intro and details sit in two columns beneath it */
+.project-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px 56px;
+    align-items: start;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+}
+
+.project-media {
+    grid-column: 1 / -1;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--forest-darker);
+    box-shadow: var(--shadow);
+}
+
+.project-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Reuses the timeline tag */
+.project-intro .timeline-tag { margin-bottom: 18px; }
+
+.project-title {
+    font-size: 2.4em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.project-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3em;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--forest);
+    margin-bottom: 20px;
+}
+
+.project-desc p {
+    font-size: 0.98em;
+    line-height: 1.75;
+    margin-bottom: 14px;
+}
+
+.project-stats {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    margin: 0 0 22px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.project-stats li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.project-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7em;
+    font-weight: 600;
+    color: var(--forest-dark);
+    line-height: 1;
+}
+
+.project-stat-label {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+.project-details .skill-tags { margin-bottom: 20px; }
+
+.project-meta {
+    font-size: 0.82em;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px 28px;
+}
+
 /* === Skills === */
 .skills-grid {
     display: grid;
@@ -728,7 +832,9 @@ form {
 .form-group input,
 .form-group textarea {
     padding: 14px 16px;
-    border: 1px solid var(--line);
+    /* Darker than --line so fields stay visible on the light section background (3:1) */
+    border: 1px solid var(--stone);
+    border-color: color-mix(in srgb, var(--stone) 70%, var(--earth));
     border-radius: var(--radius);
     font-size: 0.95em;
     font-family: 'Inter', sans-serif;
@@ -877,6 +983,19 @@ footer {
     transform: translateY(0);
 }
 
+/* === Screen-reader-only text === */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* === Focus Styles === */
 a:focus-visible,
 button:focus-visible,
@@ -888,6 +1007,18 @@ textarea:focus-visible {
 
 /* === Responsive === */
 @media (max-width: 960px) {
+    /* Six nav links: show the monogram only so the row fits on tablets.
+       The name stays in the accessibility tree so the link reads "TP Trevor Provost". */
+    .logo-divider { display: none; }
+    .logo-name {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+    .nav-links { gap: 26px; }
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -895,10 +1026,6 @@ textarea:focus-visible {
     .timeline-item {
         grid-template-columns: 1fr;
         gap: 16px;
-    }
-    .timeline-tag {
-        margin-left: 12px;
-        vertical-align: middle;
     }
     .skills-grid {
         grid-template-columns: 1fr 1fr;
@@ -908,14 +1035,17 @@ textarea:focus-visible {
         grid-template-columns: 1fr;
         gap: 32px;
     }
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px;
+    }
 }
 
 @media (max-width: 720px) {
     .section { padding: 80px 22px; }
     #navbar { padding: 16px 22px; }
     #navbar.scrolled { padding: 12px 22px; }
-    .logo-name { display: none; }
-    .logo-divider { display: none; }
     .nav-links {
         display: none;
     }
@@ -927,7 +1057,10 @@ textarea:focus-visible {
         background: var(--forest-darker);
         align-items: center;
         justify-content: center;
-        gap: 36px;
+        justify-content: safe center;
+        /* Six links must still fit a landscape phone */
+        gap: clamp(12px, 4.5vh, 36px);
+        overflow-y: auto;
         z-index: 999;
     }
     .nav-links.open a {
@@ -937,6 +1070,14 @@ textarea:focus-visible {
     .nav-toggle { display: block; z-index: 1000; }
 
     .section-head { margin-bottom: 44px; }
+    .project-card { padding: 20px; gap: 24px; }
+    .project-title { font-size: 2.1em; }
+    .project-stats { gap: 8px 28px; }
+    .project-stats li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
     .edu-grid { grid-template-columns: 1fr; }
     .about-facts { grid-template-columns: 1fr 1fr; }
     .skills-grid { grid-template-columns: 1fr; gap: 36px; }

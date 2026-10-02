@@ -16,7 +16,7 @@ document.getElementById('current-year').textContent = new Date().getFullYear();
 // Scroll reveal
 const revealTargets = document.querySelectorAll(
     '.section-head, .about-text, .about-facts, .timeline-item, ' +
-    '.education-block, .skill-group, .interest, form'
+    '.education-block, .project-card, .skill-group, .interest, form'
 );
 
 const revealObserver = new IntersectionObserver((entries) => {
