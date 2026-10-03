@@ -404,7 +404,12 @@ header {
     line-height: 1.8;
 }
 
-.about-actions { margin-top: 32px; }
+.about-actions {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+}
 
 .link-arrow {
     display: inline-flex;
