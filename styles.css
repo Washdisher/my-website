@@ -208,6 +208,7 @@ header {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.78);
     margin-bottom: 24px;
+    text-wrap: balance;
 }
 
 .hero-content h1 {
@@ -228,6 +229,7 @@ header {
     margin-bottom: 18px;
     font-style: italic;
     letter-spacing: 0.005em;
+    text-wrap: balance;
 }
 
 .hero-sub {
@@ -260,7 +262,13 @@ header {
     font-size: 0.7em;
     letter-spacing: 0.32em;
     text-transform: uppercase;
+    pointer-events: none;
     animation: fadeIn 2s 1.2s ease both;
+}
+
+/* Short screens have no room under the buttons: hide the cue rather than overlap them */
+@media (max-height: 700px), (max-width: 720px) and (max-height: 780px) {
+    .hero-scroll { display: none; }
 }
 
 .scroll-line {
