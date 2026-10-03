@@ -1,3 +1,5 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 // Navbar + back-to-top on scroll
 const navbar = document.getElementById('navbar');
 const backToTop = document.querySelector('.back-to-top');
@@ -19,19 +21,30 @@ const revealTargets = document.querySelectorAll(
     '.education-block, .project-card, .skill-group, .interest, form'
 );
 
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
+// Children of each block arrive in sequence; the index restarts for every block
 revealTargets.forEach(el => {
-    el.classList.add('reveal');
-    revealObserver.observe(el);
+    el.querySelectorAll('.fact, .timeline-body li, .skill-tags span').forEach((child, i) => {
+        child.style.setProperty('--i', Math.min(i, 12));
+    });
 });
+
+if ('IntersectionObserver' in window && !reduceMotion.matches) {
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealTargets.forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+    });
+} else {
+    revealTargets.forEach(el => el.classList.add('reveal', 'visible'));
+}
 
 // Mobile nav toggle
 const navToggle = document.querySelector('.nav-toggle');
@@ -51,7 +64,7 @@ navLinks.querySelectorAll('a').forEach(link => {
     });
 });
 
-// Smooth scroll with nav offset for in-page links
+// Scroll with nav offset for in-page links (instant when the visitor prefers reduced motion)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -61,6 +74,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const navHeight = navbar.offsetHeight;
         const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
-        window.scrollTo({ top, behavior: 'smooth' });
+        window.scrollTo({ top, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     });
 });
