@@ -79,6 +79,24 @@ a { color: inherit; }
     border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
+/* Reading-progress line along the bottom edge of the solid nav (--progress is set in scripts.js) */
+#navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: var(--sage-light);
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left center;
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+}
+
+#navbar.scrolled::after { opacity: 1; }
+
 .nav-inner {
     max-width: var(--max-w);
     margin: 0 auto;
@@ -147,6 +165,11 @@ a { color: inherit; }
 .nav-links a:hover { color: white; }
 .nav-links a:hover::after { transform: scaleX(1); }
 
+/* Scroll-spy: the link for the section in view keeps its underline */
+.nav-links a.is-active { color: white; }
+.nav-links a.is-active::after { transform: scaleX(1); }
+.nav-links .nav-cta.is-active { background: rgba(255, 255, 255, 0.12); }
+
 .nav-links .nav-cta {
     padding: 8px 18px;
     border: 1px solid rgba(255, 255, 255, 0.6);
@@ -162,15 +185,33 @@ a { color: inherit; }
     border-color: white;
 }
 
+/* Two-bar hamburger that rotates into a cross when the menu is open */
 .nav-toggle {
     display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
-    color: white;
-    font-size: 1.4em;
     cursor: pointer;
-    padding: 4px 8px;
+    padding: 0;
 }
+
+.nav-toggle-bar {
+    position: absolute;
+    left: 11px;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 1px;
+    transition: transform 0.3s var(--ease), top 0.3s var(--ease);
+}
+
+.nav-toggle-bar:nth-child(1) { top: 17px; }
+.nav-toggle-bar:nth-child(2) { top: 25px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { top: 21px; transform: rotate(-45deg); }
 
 /* === Hero === */
 header {
@@ -292,24 +333,30 @@ header::after {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 0.7em;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    pointer-events: none;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color var(--transition);
     animation: fadeIn 2s 1.2s ease both;
 }
+
+.hero-scroll:hover { color: rgba(255, 255, 255, 0.9); }
 
 /* Only tall screens have room for the cue under the buttons */
 @media (max-height: 940px), (max-width: 720px) {
     .hero-scroll { display: none; }
 }
 
+/* The line draws downward, holds, then fades: a tick rather than a throb */
 .scroll-line {
     width: 1px;
     height: 40px;
-    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
-    animation: scrollLine 2.4s ease-in-out infinite;
+    background: currentColor;
+    transform-origin: top center;
+    animation: scrollDraw 2s var(--ease) infinite;
 }
 
 /* === Buttons === */
@@ -820,20 +867,26 @@ header::after {
 }
 
 /* === Skills === */
-.skills-grid {
+/* Ruled rows on the same 220px / 1fr grid as the Experience timeline */
+.skills-grid { display: block; }
+
+.skill-group {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 220px 1fr;
     gap: 56px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
 }
+
+.skill-group:last-child { border-bottom: 1px solid var(--line); }
 
 .skill-group h3 {
     font-family: 'Inter', sans-serif;
     font-size: 0.82em;
     font-weight: 600;
     color: var(--forest);
-    margin-bottom: 24px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--line);
+    margin: 0;
+    padding-top: 7px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
@@ -1098,9 +1151,11 @@ footer {
     to   { opacity: 1; }
 }
 
-@keyframes scrollLine {
-    0%, 100% { transform: scaleY(0.6); opacity: 0.4; }
-    50%      { transform: scaleY(1); opacity: 1; }
+@keyframes scrollDraw {
+    0%        { transform: scaleY(0); opacity: 0; }
+    15%       { opacity: 1; }
+    60%       { transform: scaleY(1); opacity: 1; }
+    85%, 100% { transform: scaleY(1); opacity: 0; }
 }
 
 .reveal {
@@ -1197,9 +1252,10 @@ footer a:focus-visible {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    .skills-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
+    .skill-group {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 28px 0;
     }
     .interests-row {
         grid-template-columns: 1fr;
@@ -1224,10 +1280,9 @@ footer a:focus-visible {
     .section--dark { padding: 88px 22px 96px; }
     #interests { padding: 72px 22px 80px; }
     #navbar { padding: 16px 22px; }
+    /* Full-screen menu: stays in the DOM, fades and slides in; hidden state is also
+       removed from the tab order and assistive tech via visibility */
     .nav-links {
-        display: none;
-    }
-    .nav-links.open {
         display: flex;
         flex-direction: column;
         position: fixed;
@@ -1240,10 +1295,28 @@ footer a:focus-visible {
         gap: clamp(12px, 4.5vh, 36px);
         overflow-y: auto;
         z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s linear 0.3s;
     }
-    .nav-links.open a {
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s;
+    }
+    .nav-links a {
         font-size: 1.4em;
         color: white;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+        transition-delay: calc(var(--i, 0) * 40ms);
+    }
+    .nav-links.open a {
+        opacity: 1;
+        transform: none;
     }
     .nav-toggle { display: block; z-index: 1000; }
 
@@ -1273,7 +1346,6 @@ footer a:focus-visible {
     .edu-grid { grid-template-columns: 1fr; }
     .about-facts { grid-template-columns: 1fr 1fr; }
     .fact { padding: 24px 18px; }
-    .skills-grid { grid-template-columns: 1fr; gap: 36px; }
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .footer-ridge { height: 110px; }
     .footer-inner {
@@ -1312,9 +1384,16 @@ footer a:focus-visible {
     .edu-card,
     .btn,
     .back-to-top,
-    .nav-links a::after {
+    .nav-links,
+    .nav-links.open,
+    .nav-links a,
+    .nav-links a::after,
+    .nav-toggle-bar,
+    #navbar::before,
+    #navbar::after {
         transition: none;
     }
+    .scroll-line { opacity: 0.6; }
     .btn:hover,
     .edu-card:hover,
     .back-to-top:hover,

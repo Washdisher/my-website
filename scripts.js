@@ -1,15 +1,36 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const phoneLayout = window.matchMedia('(max-width: 720px)');
 
-// Navbar + back-to-top on scroll
 const navbar = document.getElementById('navbar');
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 const backToTop = document.querySelector('.back-to-top');
 
+// Scroll-spy targets: each section with a matching nav link
+const sections = [...document.querySelectorAll('main > section[id]')];
+const navAnchors = new Map(
+    [...navLinks.querySelectorAll('a[href^="#"]')].map(a => [a.getAttribute('href').slice(1), a])
+);
+
+// Navbar state, reading progress, scroll-spy and back-to-top, all from one scroll handler
 const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-    backToTop.classList.toggle('visible', window.scrollY > 500);
+    const y = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    navbar.classList.toggle('scrolled', y > 60);
+    navbar.style.setProperty('--progress', maxScroll > 0 ? Math.min(1, y / maxScroll).toFixed(4) : 0);
+    backToTop.classList.toggle('visible', y > 500);
+
+    // The section whose top has passed 42% of the viewport is "current"; the last one wins at the very bottom
+    const probe = y + window.innerHeight * 0.42;
+    let current = null;
+    for (const s of sections) if (s.offsetTop <= probe) current = s.id;
+    if (y + window.innerHeight >= document.documentElement.scrollHeight - 2) current = sections[sections.length - 1].id;
+    navAnchors.forEach((a, id) => a.classList.toggle('is-active', id === current));
 };
 
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
 onScroll();
 
 // Dynamic footer year
@@ -46,23 +67,37 @@ if ('IntersectionObserver' in window && !reduceMotion.matches) {
     revealTargets.forEach(el => el.classList.add('reveal', 'visible'));
 }
 
-// Mobile nav toggle
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
+// Mobile menu: open/close state lives on the button's aria-expanded
+navLinks.querySelectorAll('a').forEach((a, i) => a.style.setProperty('--i', i));
 
-navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-});
+// Everything behind the open menu is made inert so focus and screen readers stay inside it
+const behindMenu = ['header', 'main', 'footer', '.back-to-top'].map(sel => document.querySelector(sel)).filter(Boolean);
+
+const setMenu = (open) => {
+    navLinks.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    behindMenu.forEach(el => {
+        el.toggleAttribute('inert', open);
+        if (open) el.setAttribute('aria-hidden', 'true'); else el.removeAttribute('aria-hidden');
+    });
+};
+
+navToggle.addEventListener('click', () => setMenu(navToggle.getAttribute('aria-expanded') !== 'true'));
 
 navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.innerHTML = '&#9776;';
-        document.body.style.overflow = '';
-    });
+    link.addEventListener('click', () => setMenu(false));
 });
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        navToggle.focus();
+    }
+});
+
+// Leaving the phone layout with the menu open would otherwise leave the page scroll-locked
+phoneLayout.addEventListener('change', (e) => { if (!e.matches) setMenu(false); });
 
 // Scroll with nav offset for in-page links (instant when the visitor prefers reduced motion)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

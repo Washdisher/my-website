@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
                 <span class="logo-divider"></span>
                 <span class="logo-name">Trevor Provost</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="primary-nav">
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
@@ -39,7 +39,10 @@
                 <a href="#interests">Beyond Work</a>
                 <a href="#contact" class="nav-cta">Contact</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
         </div>
     </nav>
 
@@ -55,10 +58,10 @@
                 <a href="assets/Trevor-Provost-Resume.pdf" class="btn btn--outline" type="application/pdf" target="_blank" rel="noopener">Résumé (PDF)<span class="sr-only">, opens in a new tab</span></a>
             </div>
         </div>
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
+        <a href="#about" class="hero-scroll">
+            <span>Scroll<span class="sr-only"> to the next section</span></span>
+            <span class="scroll-line" aria-hidden="true"></span>
+        </a>
     </header>
 
     <main>
@@ -342,6 +345,6 @@
 
     <a href="#top" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
-    <script src="scripts.js?v=7"></script>
+    <script src="scripts.js?v=8"></script>
 </body>
 </html>
