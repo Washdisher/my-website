@@ -68,14 +68,27 @@ a { color: inherit; }
     z-index: 1000;
     padding: 18px 40px;
     background: transparent;
-    transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+    transition: border-color var(--transition);
     border-bottom: 1px solid transparent;
 }
 
-#navbar.scrolled {
+/* The solid background and blur live on a layer inside the nav. A backdrop-filter on
+   the nav itself would turn it into the positioning box for the fixed phone menu. */
+#navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: rgba(18, 38, 32, 0.96);
     backdrop-filter: saturate(150%) blur(8px);
     -webkit-backdrop-filter: saturate(150%) blur(8px);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+#navbar.scrolled::before { opacity: 1; }
+
+#navbar.scrolled {
     border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
