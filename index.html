@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -65,7 +65,7 @@
 
         <section id="about" class="section">
             <div class="container">
-                <div class="section-head">
+                <div class="section-head section-head--ruled">
                     <div class="section-label">01 &mdash; About</div>
                     <h2 class="section-title">A brief introduction</h2>
                 </div>
@@ -165,7 +165,7 @@
             </div>
         </section>
 
-        <section id="projects" class="section">
+        <section id="projects" class="section section--dark">
             <div class="container">
                 <div class="section-head">
                     <div class="section-label">03 &mdash; Projects</div>
@@ -174,8 +174,14 @@
 
                 <article class="project-card">
                     <figure class="project-media">
-                        <img src="assets/sentinel-spotcheck.webp" width="1440" height="900" loading="lazy" decoding="async"
-                             alt="SENTINEL in a desktop browser: an open alert case with the customer profile, an account ledger with flagged cash deposits, and screening results on the analyst's desk.">
+                        <a href="https://amlg.netlify.app/" target="_blank" rel="noopener">
+                            <span class="sr-only">Open SENTINEL (opens in a new tab): </span>
+                            <picture>
+                                <source media="(max-width: 720px)" srcset="assets/sentinel-spotcheck-mobile.webp" width="1280" height="1600">
+                                <img src="assets/sentinel-spotcheck.webp" width="1440" height="900" loading="lazy" decoding="async"
+                                     alt="SENTINEL in a desktop browser: an open alert case with the customer profile, an account ledger with flagged cash deposits, and screening results on the analyst's desk.">
+                            </picture>
+                        </a>
                     </figure>
                     <div class="project-intro">
                         <div class="timeline-tag">Independent project</div>
@@ -311,10 +317,17 @@
     </main>
 
     <footer>
+        <svg class="footer-ridge" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path fill="#1F3A2E" fill-opacity="0.35" d="M0 96 C120 70 220 60 360 78 C480 94 560 112 700 98 C820 86 900 60 1040 72 C1160 82 1280 104 1440 88 L1440 160 L0 160 Z"/>
+            <path fill="#122620" fill-opacity="0.9" d="M0 128 C160 112 260 100 420 114 C560 126 640 136 780 124 C900 114 980 98 1120 110 C1240 120 1340 136 1440 126 L1440 160 L0 160 Z"/>
+        </svg>
         <div class="footer-inner">
             <div class="footer-brand">
-                <div class="footer-name">Trevor Provost</div>
-                <div class="footer-title">Financial Crimes (AML) Analyst &middot; Hanson, MA</div>
+                <div class="footer-mark" aria-hidden="true">TP</div>
+                <div>
+                    <div class="footer-name">Trevor Provost</div>
+                    <div class="footer-title">Financial Crimes (AML) Analyst &middot; Hanson, MA</div>
+                </div>
             </div>
             <div class="footer-links">
                 <a href="https://www.linkedin.com/in/trevorprovost/" target="_blank" rel="noopener">LinkedIn</a>
@@ -329,6 +342,6 @@
 
     <a href="#top" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
-    <script src="scripts.js?v=6"></script>
+    <script src="scripts.js?v=7"></script>
 </body>
 </html>
